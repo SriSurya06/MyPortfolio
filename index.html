@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Surya Lakshmi Bulusu - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Typed.js for the typing effect -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            /* Original gradient background */
+            background: linear-gradient(135deg, #0f172a, #1f2937, #111827);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+            /* Fix to remove horizontal scrollbar */
+            overflow-x: hidden;
+        }
+
+        /* Animated background gradient */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Custom scrollbar for a polished look */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        body::-webkit-scrollbar-thumb {
+            /* Original scrollbar thumb color */
+            background-color: #06b6d4;
+            border-radius: 20px;
+        }
+        
+        /* New scroll-based animation setup */
+        .animated {
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        .fade-in {
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+        }
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateX(-50px);
+        }
+        .slide-in-left.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateX(50px);
+        }
+        .slide-in-right.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        /* Existing custom animations */
+        @keyframes pulse-once {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse-once-animation {
+            animation: pulse-once 0.3s ease-in-out;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* New animation for the project link */
+        @keyframes pulse-link {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        .project-link:hover {
+            animation: pulse-link 0.8s infinite;
+        }
+
+        /* Applies card hover effect to all cards with this class */
+        .skill-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        /* Applies icon spin animation only to specific sections */
+        #skills .skill-card:hover i,
+        #certifications .skill-card:hover i,
+        #profiles .skill-card:hover i {
+            animation: spin 0.8s ease-in-out;
+        }
+
+        /* Custom glow effect behind cards */
+        .card-with-glow {
+            position: relative;
+        }
+
+        .card-with-glow::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            /* Original glow color */
+            background: rgba(0, 255, 255, 0.2);
+            filter: blur(10px);
+            z-index: -1;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            border-radius: 12px;
+        }
+
+        .card-with-glow:hover::before {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-gray-900 bg-opacity-95 backdrop-blur-sm shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white transition-colors duration-300 hover:text-cyan-400">
+                Sri Surya
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-white transition-colors duration-300 hover:text-cyan-400">About</a>
+                <a href="#skills" class="text-white transition-colors duration-300 hover:text-cyan-400">Skills</a>
+                <a href="#projects" class="text-white transition-colors duration-300 hover:text-cyan-400">Projects</a>
+                <a href="#education" class="text-white transition-colors duration-300 hover:text-cyan-400">Education</a>
+                <a href="#certifications" class="text-white transition-colors duration-300 hover:text-cyan-400">Certifications</a>
+                <a href="#profiles" class="text-white transition-colors duration-300 hover:text-cyan-400">Profiles</a>
+                <a href="#hobbies" class="text-white transition-colors duration-300 hover:text-cyan-400">Hobbies</a>
+                <a href="#contact" class="text-white transition-colors duration-300 hover:text-cyan-400">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center text-center p-6 bg-gradient-to-br from-blue-950 via-gray-900 to-cyan-950">
+        <div class="space-y-6 animated fade-in">
+            <!-- Professional Photo -->
+            <img class="w-32 h-32 rounded-full mx-auto shadow-xl ring-4 ring-cyan-500 ring-opacity-50" 
+                 src="23MH1A05F2(Bamboo).png" 
+                 alt="Sri Surya Lakshmi Bulusu">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white">
+                Hi, I'm <span class="text-cyan-400">Sri Surya Lakshmi Bulusu</span>
+            </h1>
+            <!-- Typed.js effect -->
+            <p class="text-xl md:text-2xl text-gray-400">
+                I'm a <span class="typed-text font-bold" data-typed-items="Computer Engineering Student, Full-Stack Developer, Lifelong Learner"></span>
+            </p>
+            <a href="#projects" class="inline-block mt-4 px-8 py-3 text-lg font-semibold text-white bg-cyan-600 rounded-full shadow-lg hover:bg-cyan-700 transform hover:-translate-y-1 transition-all duration-300">
+                View My Work
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4 animated slide-in-left">About Me</h2>
+            <div class="w-20 h-1 bg-cyan-500 mx-auto mb-10 rounded-full animated fade-in"></div>
+            <p class="max-w-3xl mx-auto text-lg text-gray-300 animated fade-in">
+                Hello! I'm Sri Surya Lakshmi Bulusu, a Computer Engineering student at Aditya College of Engineering and Technology. I am currently a trainee at Technical Hub, learning Full-Stack Development with React Native. Outside my technical pursuits, I enjoy reading, listening to music, and discovering new facts about the world.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4 animated slide-in-right">Skills</h2>
+            <div class="w-20 h-1 bg-cyan-500 mx-auto mb-10 rounded-full animated fade-in"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 text-left">
+                <!-- Programming Languages -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow animated fade-in">
+                    <i class="fas fa-code text-4xl text-cyan-400 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-4">Programming Languages</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>C++</li>
+                        <li>C</li>
+                        <li>Java</li>
+                        <li>Python</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+
+                <!-- Frontend Development -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow animated fade-in">
+                    <i class="fas fa-laptop-code text-4xl text-cyan-400 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-4">Frontend Development</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </div>
+                
+                <!-- Core Competencies -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow animated fade-in">
+                    <i class="fas fa-star text-4xl text-cyan-400 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-4">Core Competencies</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Data Structures & Algorithms</li>
+                        <li>Competitive Coding</li>
+                    </ul>
+                </div>
+
+                <!-- Data Analysis & Tools -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow animated fade-in">
+                    <i class="fas fa-database text-4xl text-cyan-400 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-4">Data Analysis & Tools</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>MySQL</li>
+                        <li>Jupyter</li>
+                        <li>MS Excel</li>
+                    </ul>
+                </div>
+
+                <!-- Code Editors -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow animated fade-in">
+                    <i class="fas fa-keyboard text-4xl text-cyan-400 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-4">Code Editors</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>VS Code</li>
+                        <li>Sublime Text</li>
+                    </ul>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow animated fade-in">
+                    <i class="fas fa-handshake text-4xl text-cyan-400 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-4">Soft Skills</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Teamwork</li>
+                        <li>Communication</li>
+                        <li>Problem-Solving</li>
+                        <li>Adaptability</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4 animated slide-in-left">My Projects</h2>
+            <div class="w-20 h-1 bg-cyan-500 mx-auto mb-10 rounded-full animated fade-in"></div>
+            <!-- Project Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-12">
+                <!-- Project 1 -->
+                <div class="bg-gray-800 rounded-xl shadow-xl p-8 transform hover:scale-105 hover:-translate-y-2 transition-transform duration-300 skill-card card-with-glow animated fade-in">
+                    <h3 class="text-2xl font-semibold text-white mb-2">ProGuide</h3>
+                    <p class="text-gray-400 text-sm">A simple and elderly-friendly shopping website that guides users to discounts and compares product prices across multiple shopping platforms.</p>
+                    <p class="text-cyan-400 font-medium text-sm mt-4">Tech Stack: HTML, CSS</p>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-gray-800 rounded-xl shadow-xl p-8 transform hover:scale-105 hover:-translate-y-2 transition-transform duration-300 skill-card card-with-glow animated fade-in">
+                    <h3 class="text-2xl font-semibold text-white mb-2">LearnOha</h3>
+                    <p class="text-gray-400 text-sm">A student-friendly platform that balances study and fun. Features include storage for study materials, calendar, basic portfolio maker, to-do list, book-swap corner, and a fun section with quotes, jokes, fun-facts, music, and games.</p>
+                    <p class="text-cyan-400 font-medium text-sm mt-4">Tech Stack: HTML, CSS, JavaScript</p>
+                    <a href="https://github.com/SriSurya06/ISHIP-1" class="mt-4 inline-block px-6 py-2 text-white bg-cyan-600 rounded-full hover:bg-cyan-700 transition-colors duration-300 project-link">
+                        LearnOha ->
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4 animated slide-in-right">Education</h2>
+            <div class="w-20 h-1 bg-cyan-500 mx-auto mb-10 rounded-full animated fade-in"></div>
+            <div class="max-w-3xl mx-auto text-left space-y-6">
+                <!-- Current Education -->
+                <div class="bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 transform hover:scale-105 hover:-translate-y-2 transition-transform duration-300 skill-card card-with-glow animated fade-in">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-graduation-cap text-5xl text-cyan-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white">Aditya College of Engineering and Technology</h3>
+                        <p class="text-lg text-gray-300">Bachelor of Technology, Computer Engineering</p>
+                        <p class="text-sm text-gray-400 mt-1">2023 - Present | CGPA: 8.30</p>
+                    </div>
+                </div>
+                <!-- Intermediate Education -->
+                <div class="bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 transform hover:scale-105 hover:-translate-y-2 transition-transform duration-300 skill-card card-with-glow animated fade-in">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-school text-5xl text-cyan-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white">Tirumala College</h3>
+                        <p class="text-lg text-gray-300">Intermediate</p>
+                        <p class="text-sm text-gray-400 mt-1">2021 - 2023 | Grade: 95%</p>
+                    </div>
+                </div>
+                <!-- SSC Education -->
+                <div class="bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 transform hover:scale-105 hover:-translate-y-2 transition-transform duration-300 skill-card card-with-glow animated fade-in">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-school text-5xl text-cyan-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white">Sri Chaitanya School</h3>
+                        <p class="text-lg text-gray-300">SSC</p>
+                        <p class="text-sm text-gray-400 mt-1">2020 - 2021 | Grade: 10.0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4 animated slide-in-left">Certifications</h2>
+            <div class="w-20 h-1 bg-cyan-500 mx-auto mb-10 rounded-full animated fade-in"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left mt-12">
+                <!-- Cert 1 -->
+                <a href="https://drive.google.com/file/d/1mhxJKyujHyAcAyiv9ESb0Xqu81kW1tJg/view?usp=sharing" target="_blank" class="block cursor-pointer animated fade-in">
+                    <div class="bg-gray-800 rounded-xl shadow-xl p-6 skill-card card-with-glow min-h-[150px]">
+                        <i class="fas fa-certificate text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-2">Oracle Java Foundation Certificate</h3>
+                        <p class="text-gray-400 text-sm">Issued: October 2024</p>
+                    </div>
+                </a>
+                <!-- Cert 2 -->
+                <a href="https://drive.google.com/file/d/14rgsUmVir8aR4CvVGBdZJ3h7RYbp9H9k/view?usp=sharing" target="_blank" class="block cursor-pointer animated fade-in">
+                    <div class="bg-gray-800 rounded-xl shadow-xl p-6 skill-card card-with-glow min-h-[150px]">
+                        <i class="fas fa-certificate text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-2">Oracle Java Programming</h3>
+                        <p class="text-gray-400 text-sm">Issued: December 2024</p>
+                    </div>
+                </a>
+                <!-- Cert 3 -->
+                <a href="https://drive.google.com/file/d/1_GwIVIGQpWh1p_tkOCcR1xL7OcupJbTm/view?usp=sharing" target="_blank" class="block cursor-pointer animated fade-in">
+                    <div class="bg-gray-800 rounded-xl shadow-xl p-6 skill-card card-with-glow min-h-[150px]">
+                        <i class="fas fa-certificate text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-2">Cisco Python Essentials 1</h3>
+                        <p class="text-gray-400 text-sm">Issued: October 2024</p>
+                    </div>
+                </a>
+                <!-- Cert 4 -->
+                <a href="https://drive.google.com/file/d/1McCvsIAeIo4n5Aeo5wZdc047Ep6_1gcr/view?usp=sharing" target="_blank" class="block cursor-pointer animated fade-in">
+                    <div class="bg-gray-800 rounded-xl shadow-xl p-6 skill-card card-with-glow min-h-[150px]">
+                        <i class="fas fa-certificate text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-2">Cisco Programming Essentials in C</h3>
+                        <p class="text-gray-400 text-sm">Issued: March 2024</p>
+                    </div>
+                </a>
+                <!-- Cert 5 -->
+                <a href="https://drive.google.com/file/d/1Q6LlXRqlIWInyaUiO8_9tq-KQBbDTph4/view?usp=sharing" target="_blank" class="block cursor-pointer animated fade-in">
+                    <div class="bg-gray-800 rounded-xl shadow-xl p-6 skill-card card-with-glow min-h-[150px]">
+                        <i class="fas fa-certificate text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-2">Cisco Operating Systems Basics</h3>
+                        <p class="text-gray-400 text-sm">Issued: February 2025</p>
+                    </div>
+                </a>
+                <!-- Cert 6 -->
+                <a href="https://drive.google.com/file/d/1pDf3R6eB5v_NV30wdJGU94hCQVuW-6Zb/view?usp=sharing" target="_blank" class="block cursor-pointer animated fade-in">
+                    <div class="bg-gray-800 rounded-xl shadow-xl p-6 skill-card card-with-glow min-h-[150px]">
+                        <i class="fas fa-certificate text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-2">IT specialist HTML&CSS</h3>
+                        <p class="text-gray-400 text-sm">Issued: Aug 2024</p>
+                    </div>
+                </a>
+                <!-- Cert 7 -->
+                <!-- <a href="#" target="_blank" class="block cursor-pointer animated fade-in">
+                    <div class="bg-gray-800 rounded-xl shadow-xl p-6 skill-card card-with-glow min-h-[150px]">
+                        <i class="fas fa-certificate text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-2">SQL Intermediate Certificate</h3>
+                        <p class="text-gray-400 text-sm">Issued: February 2025</p>
+                    </div>
+                </a> -->
+                <!-- Cert 8 -->
+                <a href="https://drive.google.com/file/d/1sNrF8QQBMEH_O8ccdYsTzfEe-iI2XcR0/view?usp=sharing" target="_blank" class="block cursor-pointer animated fade-in">
+                    <div class="bg-gray-800 rounded-xl shadow-xl p-6 skill-card card-with-glow min-h-[150px]">
+                        <i class="fas fa-certificate text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-2">HTML Essentials</h3>
+                        <p class="text-gray-400 text-sm">Issued: July 2025</p>
+                    </div>
+                </a>
+                <!-- Cert 9 -->
+                <a href="https://drive.google.com/file/d/1St-Sw0MZpR6CzpPVghUnc7ypxtTOVSeR/view?usp=sharing" target="_blank" class="block cursor-pointer animated fade-in">
+                    <div class="bg-gray-800 rounded-xl shadow-xl p-6 skill-card card-with-glow min-h-[150px]">
+                        <i class="fas fa-certificate text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-2">CSS Essentials</h3>
+                        <p class="text-gray-400 text-sm">Issued: July 2025</p>
+                    </div>
+                </a>
+                <!-- Cert 10 -->
+                <a href="https://drive.google.com/file/d/1DNCe-bmJTuOBFbK_9juEZTvzOzLHB7iE/view?usp=sharing" target="_blank" class="block cursor-pointer animated fade-in">
+                    <div class="bg-gray-800 rounded-xl shadow-xl p-6 skill-card card-with-glow min-h-[150px]">
+                        <i class="fas fa-certificate text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-2">JavaScript Essentials 1</h3>
+                        <p class="text-gray-400 text-sm">Issued: August 2025</p>
+                    </div>
+                </a>
+                <!-- Cert 11 -->
+                <a href="https://drive.google.com/file/d/16btK61VS6emjrOJWhzq1t3ygbKZ8rpXW/view?usp=sharing" target="_blank" class="block cursor-pointer animated fade-in">
+                    <div class="bg-gray-800 rounded-xl shadow-xl p-6 skill-card card-with-glow min-h-[150px]">
+                        <i class="fas fa-certificate text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-2">JavaScript Essentials 2</h3>
+                        <p class="text-gray-400 text-sm">Issued: August 2025</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coding Profiles Section -->
+    <section id="profiles" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4 animated slide-in-right">Coding Profiles</h2>
+            <div class="w-20 h-1 bg-cyan-500 mx-auto mb-10 rounded-full animated fade-in"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                <!-- Profile 1 -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow min-h-[170px] animated fade-in">
+                    <i class="fab fa-github text-4xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-2">GitHub</h3>
+                    <p class="text-gray-400 text-sm">Explore my open-source contributions, personal projects, and collaborate on code.</p>
+                    <a href="https://github.com/SriSurya06?tab=overview&from=2024-12-01&to=2024-12-31" target="_blank" class="mt-4 inline-block text-cyan-400 hover:text-cyan-300 font-medium">View Profile &rarr;</a>
+                </div>
+                <!-- Profile 2 -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow min-h-[170px] animated fade-in">
+                    <i class="fas fa-code text-4xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-2">LeetCode</h3>
+                    <p class="text-gray-400 text-sm">See my solutions to challenging coding problems and my progress in competitive programming.</p>
+                    <a href="https://leetcode.com/u/srisurya06/" target="_blank" class="mt-4 inline-block text-cyan-400 hover:text-cyan-300 font-medium">View Profile &rarr;</a>
+                </div>
+                <!-- Profile 3 -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow min-h-[170px] animated fade-in">
+                    <i class="fas fa-terminal text-4xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-2">HackerRank</h3>
+                    <p class="text-gray-400 text-sm">Review my certifications and problem-solving skills across various domains.</p>
+                    <a href="https://www.hackerrank.com/profile/srisuryalakshmi1" target="_blank" class="mt-4 inline-block text-cyan-400 hover:text-cyan-300 font-medium">View Profile &rarr;</a>
+                </div>
+                <!-- Profile 4 -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow min-h-[170px] animated fade-in">
+                    <i class="fas fa-utensils text-4xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-2">CodeChef</h3>
+                    <p class="text-gray-400 text-sm">Check out my performance in competitive programming contests and coding challenges.</p>
+                    <a href="https://www.codechef.com/users/srisurya06" target="_blank" class="mt-4 inline-block text-cyan-400 hover:text-cyan-300 font-medium">View Profile &rarr;</a>
+                </div>
+                <!-- Profile 5 -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow min-h-[170px] animated fade-in">
+                    <i class="fas fa-trophy text-4xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-2">Codeforces</h3>
+                    <p class="text-gray-400 text-sm">See my competitive programming ratings and contest participation history.</p>
+                    <a href="https://codeforces.com/profile/srisurya_06" target="_blank" class="mt-4 inline-block text-cyan-400 hover:text-cyan-300 font-medium">View Profile &rarr;</a>
+                </div>
+                <!-- New Profile 6 -->
+                <div class="bg-gray-700 rounded-xl shadow-xl p-6 cursor-pointer skill-card card-with-glow min-h-[170px] animated fade-in">
+                    <i class="fas fa-laptop-code text-4xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-2">Geeks For Geeks</h3>
+                    <p class="text-gray-400 text-sm">Access my articles, practice problems, and contributions on the Geeks For Geeks platform.</p>
+                    <a href="https://www.geeksforgeeks.org/user/srisurya06/" target="_blank" class="mt-4 inline-block text-cyan-400 hover:text-cyan-300 font-medium">View Profile &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies & Interests Section -->
+    <section id="hobbies" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4 animated slide-in-left">Hobbies & Interests</h2>
+            <div class="w-20 h-1 bg-cyan-500 mx-auto mb-10 rounded-full animated fade-in"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mt-12">
+                <!-- Hobby 1 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg p-6 cursor-pointer skill-card card-with-glow animated fade-in">
+                    <i class="fas fa-book-open text-5xl text-cyan-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white">Reading</h3>
+                    <p class="text-gray-400 text-sm">Exploring new worlds and gaining knowledge through literature.</p>
+                </div>
+                <!-- Hobby 2 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg p-6 cursor-pointer skill-card card-with-glow animated fade-in">
+                    <i class="fas fa-headphones text-5xl text-cyan-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white">Listening to Music</h3>
+                    <p class="text-gray-400 text-sm">Finding inspiration and relaxation through various genres and artists.</p>
+                </div>
+                <!-- Hobby 3 -->
+                <div class="bg-gray-800 rounded-xl shadow-lg p-6 cursor-pointer skill-card card-with-glow animated fade-in">
+                    <i class="fas fa-lightbulb text-5xl text-cyan-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white">Discovering New Facts</h3>
+                    <p class="text-gray-400 text-sm">Satisfying my curiosity and expanding my knowledge of the world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4 animated slide-in-right">Get in Touch</h2>
+            <div class="w-20 h-1 bg-cyan-500 mx-auto mb-10 rounded-full animated fade-in"></div>
+            <p class="max-w-2xl mx-auto text-lg text-gray-300 mb-8 animated fade-in">
+                I'm currently open to new opportunities and collaborations. Feel free to reach out to me via email or connect on social media.
+            </p>
+            <div class="max-w-xl mx-auto animated fade-in">
+                <div class="flex justify-center space-x-6">
+                    <a href="mailto:23MH1A05F2@acoe.edu.in" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+                        <i class="fas fa-envelope fa-2x"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sri-surya-lakshmi-bulusu-989509291/" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                    <a href="https://github.com/SriSurya06" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 bg-gray-950 text-center text-gray-500 text-sm">
+        <p>&copy; <span id="current-year"></span> Sri Surya Lakshmi Bulusu. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Set the current year in the footer
+        document.getElementById("current-year").textContent = new Date().getFullYear();
+
+        // Initialize Typed.js
+        var typed = new Typed('.typed-text', {
+            strings: document.querySelector('.typed-text').getAttribute('data-typed-items').split(','),
+            typeSpeed: 70,
+            backSpeed: 30,
+            loop: true
+        });
+
+        // Intersection Observer for scroll-based animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Element is entering the viewport
+                    entry.target.classList.add('is-visible');
+                } else {
+                    // Element is leaving the viewport
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        // Select all elements with the 'animated' class to observe
+        document.querySelectorAll('.animated').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
